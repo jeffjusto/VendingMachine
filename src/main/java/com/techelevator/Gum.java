@@ -10,6 +10,7 @@ public class Gum implements Snacks{
     private String catchphrase;
     private int inventory;
 
+
     public String getId() {
         return id;
     }
