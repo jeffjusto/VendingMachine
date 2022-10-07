@@ -45,7 +45,7 @@ public class VendingMachineCLI {
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				//METHOD TO DISPLAY MENU/INVENTORY
 				for (Snacks item : stockDisplay) {
-					System.out.println(item.getSlot() + " | " + item.getName() + " | " + item.getPrice() + " | " + item.getInventory());
+					System.out.println(item.getSlot() + " | " + item.getName() + " | " + "$" + item.getPrice() + " | " + item.getInventory());
 				}
 
 
