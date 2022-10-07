@@ -4,18 +4,15 @@ import com.techelevator.view.Snacks;
 
 import java.math.BigDecimal;
 
-public class Chips extends Snacks {
+public class Drink extends Snacks {
 
 
-    public Chips(String name, String slot, BigDecimal price) {
+    public Drink(String name, String slot, BigDecimal price) {
         super(name, slot, price, 5);
     }
 
-
-
-
     @Override
     public String getNoise() {
-        return "munch munch, yum";
+        return "glug glug, yum";
     }
 }

@@ -25,11 +25,11 @@ public class Inventory {
             String[] products = line.split("\\|");
             BigDecimal price = new BigDecimal(products[2]);
             String type = products[3];
-            if (type.equals("Chips")) {
-                snacksList.add(new Chips(products[0], products[1], price));
+            if (type.equals("Chip")) {
+                snacksList.add(new Chip(products[0], products[1], price));
             }
-            if (type.equals("Drinks")) {
-                snacksList.add(new Drinks(products[0], products[1], price));
+            if (type.equals("Drink")) {
+                snacksList.add(new Drink(products[0], products[1], price));
             }
             if (type.equals("Candy")) {
                 snacksList.add(new Candy(products[0], products[1], price));
