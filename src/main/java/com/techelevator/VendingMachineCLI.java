@@ -6,14 +6,15 @@ import com.techelevator.view.Snacks;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
-	private static final String[] MAIN_MENU_OPTIONS = {MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE};
 	private static final String MAIN_MENU_OPTION_EXIT = "Exit";
+	private static final String[] MAIN_MENU_OPTIONS = {MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_OPTION_EXIT};
 
 	private static final String PURCHASE_MENU_FEED_MONEY = "Feed Money";
 	private static final String PURCHASE_MENU_SELECT_ITEM = "Select Item";
@@ -59,6 +60,10 @@ public class VendingMachineCLI {
 						//METHOD TO FEED MONEY
 					} else if (purchaseChoice.equals(PURCHASE_MENU_SELECT_ITEM)) {
 						//METHOD FOR MENU SELECTION
+						System.out.println("Select your item");
+						Scanner userInput = new Scanner(System.in);
+						String selection = userInput.nextLine().toUpperCase();
+
 					} else if (purchaseChoice.equals(PURCHASE_MENU_EXIT)) {
 						purchaseLoop = false;
 					}
