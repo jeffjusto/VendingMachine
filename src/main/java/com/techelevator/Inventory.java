@@ -1,14 +1,17 @@
 package com.techelevator;
 
+import com.techelevator.view.Snacks;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.math.BigDecimal;
+import java.util.*;
 
 public class Inventory {
 
 
-    public void stockInventory() {
-
+    public List<Snacks> stockInventory() {
+        List<Snacks> snacksList = new ArrayList<>();
         File inputFile = new File("vendingmachine.csv");
         Scanner inputScanner = null;
         try {
@@ -20,14 +23,27 @@ public class Inventory {
         while (inputScanner.hasNextLine()) {
             String line = inputScanner.nextLine();
             String[] products = line.split("\\|");
+            BigDecimal price = new BigDecimal(products[2]);
+            String type = products[3];
+            if (type.equals("Chips")) {
+                snacksList.add(new Chips(products[0], products[1], price));
+            }
+            if (type.equals("Drinks")) {
+                snacksList.add(new Drinks(products[0], products[1], price));
+            }
+            if (type.equals("Candy")) {
+                snacksList.add(new Candy(products[0], products[1], price));
 
+            }
+            if (type.equals("Gum")) {
+                snacksList.add(new Gum(products[0], products[1], price));
+
+
+
+            }
         }
-        Gum uchews = new Gum("D1", "U-Chews", 0.85, 5);
-        Gum littleLeagueChews = new Gum("D2", "Little League Chews", 0.95, 5);
-        Gum chiclets = new Gum("D3", "Chicklets", 0.75, 5);
-        Gum tripleMint = new Gum("D4", "TripleMint", 0.75, 5);
-        Chips potatoChips = new Chips("A1", "Potato Chips", 3.05, 5);
-        Chips stackers = new Chips("A2", "Stackers", 1.45, 5);
-        Chips grainWaves = new Chips("A3", "Grain Waves", 2.75, 5);
+        return snacksList;
+
+
     }
 }

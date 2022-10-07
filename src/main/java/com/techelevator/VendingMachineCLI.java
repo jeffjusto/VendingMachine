@@ -1,9 +1,11 @@
 package com.techelevator;
 
 import com.techelevator.view.Menu;
+import com.techelevator.view.Snacks;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
@@ -33,7 +35,8 @@ public class VendingMachineCLI {
 	}
 
 	public void run() {
-
+		Inventory stock = new Inventory();
+		List<Snacks> stockDisplay = stock.stockInventory();
 
 		boolean vendingLoop = true;
 		while (vendingLoop) {
@@ -41,21 +44,11 @@ public class VendingMachineCLI {
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				//METHOD TO DISPLAY MENU/INVENTORY
+				for (Snacks item : stockDisplay) {
+					System.out.println(item.getSlot() + " | " + item.getName() + " | " + item.getPrice() + " | " + item.getInventory());
+				}
 
-					File inputFile = new File("vendingmachine.csv");
-					Scanner inputScanner = null;
-					try {
-						inputScanner = new Scanner(inputFile);
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					}
 
-					while (inputScanner.hasNextLine()) {
-						String line = inputScanner.nextLine();
-						String[] products = line.split("\\|");
-						System.out.println(products[0] + " | " + products[1] + " | " + products[2]);
-
-					}
 
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				boolean purchaseLoop = true;
@@ -65,20 +58,6 @@ public class VendingMachineCLI {
 					if (purchaseChoice.equals(PURCHASE_MENU_FEED_MONEY)) {
 						//METHOD TO FEED MONEY
 					} else if (purchaseChoice.equals(PURCHASE_MENU_SELECT_ITEM)) {
-						File inputFile = new File("vendingmachine.csv");
-						Scanner inputScanner = null;
-						try {
-							inputScanner = new Scanner(inputFile);
-						} catch (FileNotFoundException e) {
-							e.printStackTrace();
-						}
-
-						while (inputScanner.hasNextLine()) {
-							String line = inputScanner.nextLine();
-							String[] products = line.split("\\|");
-							System.out.println(products[0] + " | " + products[1] + " | " + products[2]);
-
-						}
 						//METHOD FOR MENU SELECTION
 					} else if (purchaseChoice.equals(PURCHASE_MENU_EXIT)) {
 						purchaseLoop = false;

@@ -1,15 +1,21 @@
 package com.techelevator;
 
+import com.techelevator.view.Snacks;
+
 import java.math.BigDecimal;
 
-public class Chips extends Gum{
+public class Chips extends Snacks {
 
-    public Chips(String id, String name, double price, int inventory) {
-        super(id, name, price, inventory);
+
+    public Chips(String name, String slot, BigDecimal price) {
+        super(name, slot, price, 5);
     }
 
+
+
+
     @Override
-    public String saying() {
-        return super.saying();
+    public String getNoise() {
+        return "munch munch, yum";
     }
 }
