@@ -1,11 +1,13 @@
 package com.techelevator;
 
 import com.techelevator.view.Menu;
+import com.techelevator.view.Purchase;
 import com.techelevator.view.Snacks;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -39,6 +41,7 @@ public class VendingMachineCLI {
 	}
 
 	public void run() {
+		Inventory updatedInventory = new Inventory();
 		Inventory stock = new Inventory();
 		List<Snacks> stockDisplay = stock.stockInventory();
 
@@ -65,7 +68,7 @@ public class VendingMachineCLI {
 						System.out.println("Select dollar amount $1, $5, $10, $20:");
 						Scanner userInput = new Scanner(System.in);
 						String dollarChoice = userInput.nextLine();
-						BigDecimal balance = new BigDecimal(dollarChoice);
+						balance = balance.add(new BigDecimal(dollarChoice));
 						System.out.println("Your balance is: " + "$" + balance);
 
 
@@ -78,12 +81,36 @@ public class VendingMachineCLI {
 							System.out.printf("%-2s | %-20s | %-4s | %2s \n", item.getSlot(), item.getName(), "$" + item.getPrice(), (item.getInventory()));
 						}
 
+						System.out.println("Select an item from the menu >>>");
+						Scanner userInput = new Scanner(System.in);
+						String selection = userInput.nextLine();
+						Purchase itemPurchase = new Purchase();
+						BigDecimal zero = new BigDecimal("0");
 
 
+						if(itemPurchase.updatedBalance(balance, selection).compareTo(zero) >= 0) {
+							BigDecimal newBalance = itemPurchase.updatedBalance(balance, selection);
 
+							balance = newBalance;
 
+							System.out.println("Your new balance is: $" + balance);
+							for (Snacks item : stockDisplay) {
+								if (item.getSlot().equals(selection))
+									System.out.println(item.getNoise());
 
+							}
+							for (Snacks item : stockDisplay) {
+								if (item.getSlot().equals(selection) ) {
+									item.setInventory(item.getInventory() - 1);
+										if(item.getInventory() < 0){
+											System.err.println("Item is SOLD OUT");
+										}
+								}
+							}
 
+						} else if (itemPurchase.updatedBalance(balance, selection).compareTo(zero) < 0 ){
+							System.err.println("Not enough money. Please feed more money.");
+						}
 
 					} else if(purchaseChoice.equals(PURCHASE_MENU_EXIT)) {
 						purchaseLoop = false;

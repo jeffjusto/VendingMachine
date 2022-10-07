@@ -39,11 +39,21 @@ public class Inventory {
                 snacksList.add(new Gum(products[0], products[1], price));
 
 
-
             }
         }
         return snacksList;
 
 
+    }
+
+    public int newInventory() {
+        int updatedInventory = 0;
+        Inventory stock = new Inventory();
+        List<Snacks> stockInventory = stock.stockInventory();
+        for (Snacks snack : stockInventory) {
+                updatedInventory = snack.getInventory() - 1;
+
+        }
+        return updatedInventory;
     }
 }
