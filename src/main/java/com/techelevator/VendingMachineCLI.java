@@ -5,11 +5,14 @@ import com.techelevator.view.Snacks;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
+
+	BigDecimal balance = new BigDecimal("0.00");
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
@@ -59,13 +62,30 @@ public class VendingMachineCLI {
 
 					if (purchaseChoice.equals(PURCHASE_MENU_FEED_MONEY)) {
 						//METHOD TO FEED MONEY
+						System.out.println("Select dollar amount $1, $5, $10, $20:");
+						Scanner userInput = new Scanner(System.in);
+						String dollarChoice = userInput.nextLine();
+						BigDecimal balance = new BigDecimal(dollarChoice);
+						System.out.println("Your balance is: " + "$" + balance);
+
+
+
+
+
 					} else if (purchaseChoice.equals(PURCHASE_MENU_SELECT_ITEM)) {
 						//METHOD FOR MENU SELECTION
-						System.out.println("Select your item");
-						Scanner userInput = new Scanner(System.in);
-						String selection = userInput.nextLine().toUpperCase();
+						for (Snacks item : stockDisplay) {
+							System.out.printf("%-2s | %-20s | %-4s | %2s \n", item.getSlot(), item.getName(), "$" + item.getPrice(), (item.getInventory()));
+						}
 
-					} else if (purchaseChoice.equals(PURCHASE_MENU_EXIT)) {
+
+
+
+
+
+
+
+					} else if(purchaseChoice.equals(PURCHASE_MENU_EXIT)) {
 						purchaseLoop = false;
 					}
 				}

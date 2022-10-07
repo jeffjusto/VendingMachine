@@ -1,6 +1,8 @@
 package com.techelevator.view;
 
 import java.math.BigDecimal;
+import java.util.Locale;
+import java.util.Scanner;
 
 public abstract class Snacks {
 
@@ -53,4 +55,6 @@ public abstract class Snacks {
 
 
     public abstract String getNoise();
+
+
 }
