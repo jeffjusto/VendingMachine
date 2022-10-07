@@ -42,11 +42,12 @@ public class VendingMachineCLI {
 		boolean vendingLoop = true;
 		while (vendingLoop) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
+			System.out.println();
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				//METHOD TO DISPLAY MENU/INVENTORY
 				for (Snacks item : stockDisplay) {
-					System.out.println(item.getSlot() + " | " + item.getName() + " | " + "$" + item.getPrice() + " | " + item.getInventory());
+					System.out.printf("%-2s | %-20s | %-4s | %2s \n", item.getSlot() ,item.getName(), "$" +item.getPrice(), item.getInventory());
 				}
 
 
