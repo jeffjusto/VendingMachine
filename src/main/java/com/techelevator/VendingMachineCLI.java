@@ -72,6 +72,7 @@ public class VendingMachineCLI {
 					}
 
 
+
 				} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 					boolean purchaseLoop = true;
 					while (purchaseLoop) {
@@ -86,6 +87,7 @@ public class VendingMachineCLI {
 							System.out.println("Your balance is: " + "$" + balance);
 							purchaseLog.println(dateLog + " FEED MONEY " + "$" + dollarChoice + " " + balance);
 							purchaseLog.flush();
+
 
 
 
